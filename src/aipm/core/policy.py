@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 class DataHandlingPolicy(BaseModel):
     """Rules for data collection, consent, and retention."""
-    
+
     model_config = ConfigDict(extra="allow")
 
     require_collection_justification: bool = True
@@ -25,7 +25,7 @@ class DataHandlingPolicy(BaseModel):
 
 class ExperimentationPolicy(BaseModel):
     """Constraints for A/B testing and experimentation."""
-   
+
     model_config = ConfigDict(extra="allow")
 
     require_guardrail_metrics: bool = True
@@ -36,7 +36,7 @@ class ExperimentationPolicy(BaseModel):
 
 class AccessibilityPolicy(BaseModel):
     """Accessibility compliance requirements."""
-   
+
     model_config = ConfigDict(extra="allow")
 
     wcag_level: str = "AA"
@@ -57,7 +57,7 @@ class RiskGatingPolicy(BaseModel):
 
 class PolicyPack(BaseModel):
     """Complete policy pack matching the YAML structure."""
-    
+
     model_config = ConfigDict(extra="allow")
 
     product_principles: list[str] = Field(default_factory=list)
@@ -84,7 +84,7 @@ def load_policy(path: str) -> PolicyPack:
     if not policy_path.exists():
         raise FileNotFoundError(f"Policy file not found: {path}")
 
-    with open(policy_path, "r", encoding="utf-8") as f:
+    with open(policy_path, encoding="utf-8") as f:
         raw = yaml.safe_load(f)
 
     policy = PolicyPack.model_validate(raw)
@@ -201,8 +201,8 @@ def format_policy_summary(policy: PolicyPack) -> str:
 
     lines.append("\n" + "=" * 22)
     return "\n".join(lines)
-    
-    
+
+
 def evaluate_risk_gate(findings: list[Finding], policy: PolicyPack) -> dict:
     """Evaluate whether findings pass the risk gate defined by the policy.
 

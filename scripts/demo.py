@@ -27,8 +27,9 @@ sys.path.insert(0, str(PROJECT_ROOT / "src"))
 from aipm.core.orchestrator import PipelineOrchestrator  # noqa: E402
 from aipm.schemas.config import RunConfig  # noqa: E402
 
+# ---------------------------------------------------------------------------
 # Colour helpers (ANSI — works in most modern terminals)
-
+# ---------------------------------------------------------------------------
 BOLD = "\033[1m"
 DIM = "\033[2m"
 CYAN = "\033[96m"
@@ -63,8 +64,9 @@ def print_info(text: str) -> None:
     print(f"  {DIM}{text}{RESET}")
 
 
+# ---------------------------------------------------------------------------
 # Pipeline runner helper
-
+# ---------------------------------------------------------------------------
 async def run_pipeline(
     input_path: str,
     *,
@@ -91,8 +93,9 @@ async def run_pipeline(
     return manifest
 
 
+# ---------------------------------------------------------------------------
 # Display helpers
-
+# ---------------------------------------------------------------------------
 def show_key_artifacts(manifest: dict) -> None:
     """Print a summary of key artifacts produced by the pipeline."""
     artifacts = manifest.get("artifacts", {})
@@ -207,8 +210,9 @@ def print_run_summary(manifest: dict) -> None:
         print_warn(f"Errors: {', '.join(errors.keys())}")
 
 
+# ---------------------------------------------------------------------------
 # Demo scenarios
-
+# ---------------------------------------------------------------------------
 async def demo_1(provider: str, model: str) -> dict:
     """Demo 1: Privacy risk scenario — expected: 'validate_first' due to PII risks."""
     print_section("Demo 1: Privacy Risk Scenario")
@@ -311,8 +315,9 @@ async def demo_5(result: dict | None, provider: str, model: str) -> None:
     show_all_artifacts(result)
 
 
+# ---------------------------------------------------------------------------
 # Main orchestration
-
+# ---------------------------------------------------------------------------
 async def run_demo(
     provider: str = "openai",
     model: str = "gpt-4o",
@@ -366,15 +371,22 @@ def main() -> None:
         """),
     )
     parser.add_argument(
-        "--demo", type=int, default=None, choices=[1, 2, 3, 4, 5],
+        "--demo",
+        type=int,
+        default=None,
+        choices=[1, 2, 3, 4, 5],
         help="Run a specific demo (1-5). Omit to run all.",
     )
     parser.add_argument(
-        "--provider", type=str, default="openai",
+        "--provider",
+        type=str,
+        default="openai",
         help="LLM provider: openai or anthropic (default: openai)",
     )
     parser.add_argument(
-        "--model", type=str, default="gpt-4o",
+        "--model",
+        type=str,
+        default="gpt-4o",
         help="Model name (default: gpt-4o)",
     )
     args = parser.parse_args()
@@ -382,11 +394,13 @@ def main() -> None:
     # Change to project root so relative paths work
     os.chdir(PROJECT_ROOT)
 
-    asyncio.run(run_demo(
-        provider=args.provider,
-        model=args.model,
-        demo_number=args.demo,
-    ))
+    asyncio.run(
+        run_demo(
+            provider=args.provider,
+            model=args.model,
+            demo_number=args.demo,
+        )
+    )
 
 
 if __name__ == "__main__":

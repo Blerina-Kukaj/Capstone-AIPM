@@ -10,7 +10,7 @@ all other sections are derived deterministically from structured findings data.
 
 import json
 import logging
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from aipm.core.policy import PolicyPack, evaluate_risk_gate
 from aipm.schemas.config import RunConfig
@@ -55,7 +55,9 @@ class FinalPlanGenerator:
         self.artifact_paths = artifact_paths or {}
         self.product_name = product_name
 
+    # ------------------------------------------------------------------
     # Lead PM metadata extraction helpers
+    # ------------------------------------------------------------------
 
     def _lead_pm_meta(self, finding_id: str) -> dict:
         """Return the metadata dict of a specific lead_pm meta-finding."""
@@ -73,7 +75,9 @@ class FinalPlanGenerator:
         """Return resolved conflicts from lead_pm-003 metadata."""
         return self._lead_pm_meta("lead_pm-003").get("conflicts", [])
 
+    # ------------------------------------------------------------------
     # Recommendation derivation
+    # ------------------------------------------------------------------
 
     def _derive_decision(self, gate_result: dict) -> tuple[str, float]:
         """Return (decision, confidence) derived from gate + confidence distribution."""
@@ -87,21 +91,19 @@ class FinalPlanGenerator:
                 0.85 if len(blockers) >= 3 else 0.70,
             )
 
-        speculative_ratio = sum(
-            1 for f in self.all_findings if f.confidence == "speculative"
-        ) / total
+        speculative_ratio = sum(1 for f in self.all_findings if f.confidence == "speculative") / total
         if speculative_ratio > 0.5:
             return "validate_first", 0.55
 
         if warnings:
             return "proceed_with_mitigations", 0.75
 
-        validated_ratio = sum(
-            1 for f in self.all_findings if f.confidence == "validated"
-        ) / total
+        validated_ratio = sum(1 for f in self.all_findings if f.confidence == "validated") / total
         return "proceed", round(min(0.95, 0.70 + validated_ratio * 0.25), 2)
 
+    # ------------------------------------------------------------------
     # Section builders (deterministic — no LLM)
+    # ------------------------------------------------------------------
 
     def _build_recommendation(self, gate_result: dict) -> dict:
         decision, confidence = self._derive_decision(gate_result)
@@ -149,14 +151,8 @@ class FinalPlanGenerator:
                     mitigations.append(rec)
 
         return {
-            "critical": [
-                {"id": f.id, "title": f.title, "agent_id": f.agent_id}
-                for f in critical
-            ],
-            "high": [
-                {"id": f.id, "title": f.title, "agent_id": f.agent_id}
-                for f in high
-            ],
+            "critical": [{"id": f.id, "title": f.title, "agent_id": f.agent_id} for f in critical],
+            "high": [{"id": f.id, "title": f.title, "agent_id": f.agent_id} for f in high],
             "mitigations_required": mitigations,
             "gate_status": "passed" if gate_result.get("passed", True) else "blocked",
         }
@@ -165,20 +161,13 @@ class FinalPlanGenerator:
         metric_findings = [f for f in self.all_findings if f.agent_id == "metrics"]
 
         north_star = next(
-            (
-                f for f in metric_findings
-                if "north-star" in f.tags or "north_star" in f.tags or f.type == "metric"
-            ),
+            (f for f in metric_findings if "north-star" in f.tags or "north_star" in f.tags or f.type == "metric"),
             metric_findings[0] if metric_findings else None,
         )
         input_metrics = [
-            f for f in metric_findings
-            if "input-metric" in f.tags or "input_metric" in f.tags or "leading" in f.tags
+            f for f in metric_findings if "input-metric" in f.tags or "input_metric" in f.tags or "leading" in f.tags
         ]
-        guardrails = [
-            f for f in metric_findings
-            if "guardrail" in f.tags or "guardrail-metric" in f.tags
-        ]
+        guardrails = [f for f in metric_findings if "guardrail" in f.tags or "guardrail-metric" in f.tags]
 
         def _stub(f: Finding) -> dict:
             return {
@@ -204,24 +193,14 @@ class FinalPlanGenerator:
             if phase in phase_map:
                 phase_map[phase].append(f.title)
 
-        phases = [
-            {"phase": phase, "items": items}
-            for phase, items in phase_map.items()
-            if items
-        ]
+        phases = [{"phase": phase, "items": items} for phase, items in phase_map.items() if items]
 
         # Critical path: items with declared dependencies
-        critical_path = [
-            f.title
-            for f in feasibility + requirements
-            if (f.metadata or {}).get("dependencies")
-        ][:10]
+        critical_path = [f.title for f in feasibility + requirements if (f.metadata or {}).get("dependencies")][:10]
 
         # Dominant complexity from feasibility metadata
         complexities = [
-            (f.metadata or {}).get("complexity", "")
-            for f in feasibility
-            if (f.metadata or {}).get("complexity")
+            (f.metadata or {}).get("complexity", "") for f in feasibility if (f.metadata or {}).get("complexity")
         ]
         counts = {c: complexities.count(c) for c in set(complexities) if c}
         estimated_complexity = max(counts, key=counts.get) if counts else "medium"
@@ -234,10 +213,7 @@ class FinalPlanGenerator:
 
     def _build_open_questions(self) -> list[str]:
         gap_findings = [f for f in self.all_findings if f.type == "gap"]
-        speculative = [
-            f for f in self.all_findings
-            if f.confidence == "speculative" and f not in gap_findings
-        ]
+        speculative = [f for f in self.all_findings if f.confidence == "speculative" and f not in gap_findings]
         seen: set[str] = set()
         questions: list[str] = []
         for f in gap_findings + speculative:
@@ -269,7 +245,9 @@ class FinalPlanGenerator:
             "backlog": self.artifact_paths.get("backlog", ""),
         }
 
+    # ------------------------------------------------------------------
     # LLM call
+    # ------------------------------------------------------------------
 
     async def _call_llm(self, system: str, user: str) -> str:
         """Call the LLM using the configured provider (text response, no JSON mode)."""
@@ -299,7 +277,9 @@ class FinalPlanGenerator:
         else:
             raise ValueError(f"Unsupported LLM client type: {type(self.llm_client)}")
 
+    # ------------------------------------------------------------------
     # Public API
+    # ------------------------------------------------------------------
 
     async def generate(self) -> dict:
         """Generate final_plan.json — the master output consolidating everything.
@@ -331,13 +311,15 @@ class FinalPlanGenerator:
 
         # 3. Assemble LLM prompt context
         top_findings_text = "\n".join(
-            f"  [{kf['id']}] ({kf['impact']}, {kf['agent_id']}): {kf['title']}"
-            for kf in key_findings[:10]
+            f"  [{kf['id']}] ({kf['impact']}, {kf['agent_id']}): {kf['title']}" for kf in key_findings[:10]
         )
-        conflict_text = "\n".join(
-            f"  [{c.get('finding_a','?')} vs {c.get('finding_b','?')}]: {c.get('description','')}"
-            for c in self._conflicts()[:5]
-        ) or "  None identified"
+        conflict_text = (
+            "\n".join(
+                f"  [{c.get('finding_a', '?')} vs {c.get('finding_b', '?')}]: {c.get('description', '')}"
+                for c in self._conflicts()[:5]
+            )
+            or "  None identified"
+        )
 
         llm_context = (
             f"Product: {pname}\n"
@@ -361,7 +343,7 @@ class FinalPlanGenerator:
         plan = {
             "run_id": self.run_config.run_id,
             "product_name": pname,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": datetime.now(UTC).isoformat(),
             "recommendation": recommendation,
             "executive_summary": exec_summary.strip(),
             "key_findings": key_findings,
@@ -390,8 +372,7 @@ class FinalPlanGenerator:
             output_path: Full file path to write to.
         """
         from pathlib import Path
+
         Path(output_path).parent.mkdir(parents=True, exist_ok=True)
-        Path(output_path).write_text(
-            json.dumps(plan, indent=2, default=str), encoding="utf-8"
-        )
+        Path(output_path).write_text(json.dumps(plan, indent=2, default=str), encoding="utf-8")
         logger.info("Final plan saved to %s", output_path)
