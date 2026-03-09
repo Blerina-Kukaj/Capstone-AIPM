@@ -34,13 +34,7 @@ class BaseAgent(ABC):
         self.logger = logging.getLogger(f"aipm.agents.{self.agent_id}")
 
         # Detect provider from client type
-        client_type = type(llm_client).__module__
-        if "openai" in client_type:
-            self._provider = "openai"
-        elif "anthropic" in client_type:
-            self._provider = "anthropic"
-        else:
-            self._provider = run_config.provider
+        self._provider = "openai"
 
         self.logger.info("Initialized %s (provider=%s, model=%s)", self.agent_name, self._provider, run_config.model)
 
@@ -66,8 +60,7 @@ class BaseAgent(ABC):
         Args:
             system_prompt: The system-level instruction for the LLM.
             user_prompt: The user-level message with data and questions.
-            response_format: Optional dict to request JSON mode (OpenAI) or
-                             append JSON instructions (Anthropic).
+            response_format: Optional dict to request JSON mode (OpenAI).
 
         Returns:
             The LLM response content as a string.
@@ -93,9 +86,7 @@ class BaseAgent(ABC):
         response_format: dict | None = None,
     ) -> str:
         """Inner LLM call wrapped by the retry decorator."""
-        if self._provider == "openai":
-            return await self._call_openai(system_prompt, user_prompt, response_format)
-        return await self._call_anthropic(system_prompt, user_prompt, response_format)
+        return await self._call_openai(system_prompt, user_prompt, response_format)
 
     async def _call_openai(
         self,
@@ -103,7 +94,7 @@ class BaseAgent(ABC):
         user_prompt: str,
         response_format: dict | None,
     ) -> str:
-        """Dispatch an LLM call via the OpenAI SDK."""
+        """Dispatch an LLM call via the async OpenAI SDK."""
         kwargs: dict = {
             "model": self.run_config.model,
             "temperature": self.run_config.temperature,
@@ -115,7 +106,7 @@ class BaseAgent(ABC):
         if response_format:
             kwargs["response_format"] = {"type": "json_object"}
 
-        response = self.llm_client.chat.completions.create(**kwargs)
+        response = await self.llm_client.chat.completions.create(**kwargs)
 
         usage = response.usage
         if usage:
@@ -129,41 +120,6 @@ class BaseAgent(ABC):
                 self.token_tracker.record(self.agent_id, usage.prompt_tokens, usage.completion_tokens)
 
         return response.choices[0].message.content
-
-    async def _call_anthropic(
-        self,
-        system_prompt: str,
-        user_prompt: str,
-        response_format: dict | None,
-    ) -> str:
-        """Dispatch an LLM call via the Anthropic SDK."""
-        effective_system = system_prompt
-        if response_format:
-            effective_system += (
-                "\n\nIMPORTANT: Respond with valid JSON only. No markdown, no explanation outside the JSON."
-            )
-
-        response = self.llm_client.messages.create(
-            model=self.run_config.model,
-            max_tokens=4096,
-            temperature=self.run_config.temperature,
-            system=effective_system,
-            messages=[
-                {"role": "user", "content": user_prompt},
-            ],
-        )
-
-        usage = response.usage
-        if usage:
-            self.logger.info(
-                "Token usage — input: %d, output: %d",
-                usage.input_tokens,
-                usage.output_tokens,
-            )
-            if self.token_tracker:
-                self.token_tracker.record(self.agent_id, usage.input_tokens, usage.output_tokens)
-
-        return response.content[0].text
 
     def save_output(self, output: AgentOutput) -> str:
         """Serialize AgentOutput to JSON and save to the findings directory.
@@ -221,6 +177,7 @@ class BaseAgent(ABC):
 
 Rules:
 - Every finding MUST reference at least one evidence source_id from the provided data.
-- Classify confidence as: "validated" (multiple corroborating sources), "directional" (single strong source), "speculative" (inferred, needs validation).
+- Classify confidence as: "validated" (multiple corroborating sources),
+  "directional" (single strong source), "speculative" (inferred, needs validation).
 - Use sequential IDs starting from 001.
 - Return ONLY valid JSON. No markdown code fences, no extra text."""
