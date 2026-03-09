@@ -35,7 +35,7 @@ class TestConfig:
         assert config.input_path == "input_bundles/sample_bundle"
         assert config.output_dir == "output"
         assert config.provider == "openai"
-        assert config.model == "gpt-4o"
+        assert config.model == "gpt-4o-mini"
         assert config.temperature == 0.2
         assert len(config.run_id) == 36  # UUID format
 
@@ -67,12 +67,12 @@ class TestConfig:
         assert run_dir.name == config.run_id
 
     def test_get_llm_client_openai(self, monkeypatch):
-        """Mock OpenAI and verify client creation."""
+        """Mock OpenAI and verify async client creation."""
         monkeypatch.setenv("OPENAI_API_KEY", "test-key-123")
 
         mock_openai_class = MagicMock()
         mock_module = MagicMock()
-        mock_module.OpenAI = mock_openai_class
+        mock_module.AsyncOpenAI = mock_openai_class
 
         with patch.dict("sys.modules", {"openai": mock_module}):
             client = get_llm_client("openai")

@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 # Model ID mappings per provider
 MODELS: dict[str, dict[str, str]] = {
     "openai": {
-        "default": "gpt-4o",
+        "default": "gpt-4o-mini",
         "fast": "gpt-4o-mini",
     },
 }
@@ -47,7 +47,7 @@ def get_llm_client(provider: str = "openai") -> Any:
 
         api_key = os.environ.get("OPENAI_API_KEY")
         if not api_key:
-            raise OSError("OPENAI_API_KEY is not set. Add it to your .env file.")
+            raise EnvironmentError("OPENAI_API_KEY is not set. Add it to your .env file.")
         logger.info("Initializing async OpenAI client")
         return openai.AsyncOpenAI(api_key=api_key)
 
