@@ -1,0 +1,139 @@
+{
+  "agent_id": "intake",
+  "agent_name": "Intake & Context Agent",
+  "run_id": "b9496692-5031-4e1c-80d0-41bd049fec4f",
+  "timestamp": "2026-03-09T21:23:33.116037Z",
+  "findings": [
+    {
+      "id": "intake-001",
+      "agent_id": "intake",
+      "type": "insight",
+      "title": "Duplicate ticket detected: SEARCH-202",
+      "description": "SEARCH-202 is a duplicate of SEARCH-201. Reason: Both tickets report issues related to search relevance and user satisfaction after the v2.4.1 release.",
+      "impact": "low",
+      "confidence": "directional",
+      "assumptions": [],
+      "evidence": [
+        {
+          "source_id": "SEARCH-201",
+          "source_type": "ticket",
+          "excerpt": "Original ticket",
+          "url": null
+        },
+        {
+          "source_id": "SEARCH-202",
+          "source_type": "ticket",
+          "excerpt": "Duplicate ticket",
+          "url": null
+        }
+      ],
+      "recommendations": [],
+      "tags": [
+        "data_quality",
+        "dedup"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "intake-002",
+      "agent_id": "intake",
+      "type": "risk",
+      "title": "Risk hotspot detected: auth",
+      "description": "Detected auth risk keywords in 4 source(s): DOC-002, DOC-003, SEARCH-203, SEARCH-206",
+      "impact": "high",
+      "confidence": "directional",
+      "assumptions": [],
+      "evidence": [
+        {
+          "source_id": "DOC-002",
+          "source_type": "ticket",
+          "excerpt": "Keyword match",
+          "url": null
+        },
+        {
+          "source_id": "DOC-003",
+          "source_type": "ticket",
+          "excerpt": "Keyword match",
+          "url": null
+        },
+        {
+          "source_id": "SEARCH-203",
+          "source_type": "ticket",
+          "excerpt": "Keyword match",
+          "url": null
+        },
+        {
+          "source_id": "SEARCH-206",
+          "source_type": "ticket",
+          "excerpt": "Keyword match",
+          "url": null
+        }
+      ],
+      "recommendations": [],
+      "tags": [
+        "auth"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "intake-003",
+      "agent_id": "intake",
+      "type": "risk",
+      "title": "Risk hotspot detected: pricing",
+      "description": "Detected pricing risk keywords in 3 source(s): DOC-001, DOC-002, SEARCH-201",
+      "impact": "high",
+      "confidence": "directional",
+      "assumptions": [],
+      "evidence": [
+        {
+          "source_id": "DOC-001",
+          "source_type": "ticket",
+          "excerpt": "Keyword match",
+          "url": null
+        },
+        {
+          "source_id": "DOC-002",
+          "source_type": "ticket",
+          "excerpt": "Keyword match",
+          "url": null
+        },
+        {
+          "source_id": "SEARCH-201",
+          "source_type": "ticket",
+          "excerpt": "Keyword match",
+          "url": null
+        }
+      ],
+      "recommendations": [],
+      "tags": [
+        "pricing"
+      ],
+      "metadata": {}
+    },
+    {
+      "id": "intake-004",
+      "agent_id": "intake",
+      "type": "risk",
+      "title": "Risk hotspot detected: accessibility",
+      "description": "Detected accessibility risk keywords in 1 source(s): DOC-002",
+      "impact": "low",
+      "confidence": "directional",
+      "assumptions": [],
+      "evidence": [
+        {
+          "source_id": "DOC-002",
+          "source_type": "ticket",
+          "excerpt": "Keyword match",
+          "url": null
+        }
+      ],
+      "recommendations": [],
+      "tags": [
+        "accessibility"
+      ],
+      "metadata": {}
+    }
+  ],
+  "summary": "The SearchBoost Query Engine is experiencing a significant 15% drop in search relevance scores following the recent deployment of version 2.4.1, which has raised concerns among users about the accuracy and efficiency of search results. Key user pain points include increased search latency on mobile web, stale autocomplete suggestions, and missing analytics for new query types, indicating potential issues with the new ranking algorithm and overall system performance. The most important signals from the data highlight risk hotspots in authentication, pricing, and accessibility, suggesting areas that require immediate attention to restore user trust and satisfaction.",
+  "errors": []
+}

@@ -1,0 +1,512 @@
+{
+  "evidence_index": {
+    "DOC-001": [
+      "intake-001",
+      "intake-002",
+      "intake-003",
+      "intake-004",
+      "intake-005",
+      "competitive-002",
+      "risk-001",
+      "risk-002",
+      "risk-003"
+    ],
+    "DOC-003": [
+      "intake-001",
+      "intake-002",
+      "metrics-001",
+      "metrics-002",
+      "metrics-003"
+    ],
+    "DOC-004": [
+      "intake-001",
+      "intake-002",
+      "intake-003",
+      "intake-005"
+    ],
+    "COLLAB-302": [
+      "intake-002",
+      "metrics-004",
+      "competitive-001",
+      "competitive-003",
+      "customer-001",
+      "customer-005",
+      "requirements-001"
+    ],
+    "DOC-002": [
+      "intake-002",
+      "intake-005",
+      "customer-001",
+      "customer-002",
+      "customer-005"
+    ],
+    "COLLAB-301": [
+      "competitive-001",
+      "requirements-001"
+    ],
+    "COLLAB-305": [
+      "competitive-004",
+      "feasibility-002",
+      "requirements-004"
+    ],
+    "COLLAB-303": [
+      "customer-002",
+      "feasibility-004",
+      "requirements-002"
+    ],
+    "COLLAB-304": [
+      "customer-003",
+      "feasibility-001",
+      "requirements-003"
+    ],
+    "COLLAB-306": [
+      "customer-004",
+      "feasibility-003",
+      "requirements-005"
+    ],
+    "metrics-004": [
+      "requirements-006"
+    ],
+    "metrics-001": [
+      "requirements-007"
+    ],
+    "metrics-002": [
+      "requirements-008"
+    ],
+    "metrics-003": [
+      "requirements-009"
+    ],
+    "metrics-005": [
+      "requirements-010"
+    ]
+  },
+  "dedup_log": [
+    {
+      "cluster": [
+        "intake-001",
+        "risk-001"
+      ],
+      "kept": "intake-001",
+      "removed": [
+        "risk-001"
+      ],
+      "reason": "Both describe risks related to authentication weaknesses."
+    },
+    {
+      "cluster": [
+        "intake-002",
+        "risk-002"
+      ],
+      "kept": "intake-002",
+      "removed": [
+        "risk-002"
+      ],
+      "reason": "Both findings highlight risks associated with compliance and data handling."
+    },
+    {
+      "cluster": [
+        "intake-003",
+        "requirements-001"
+      ],
+      "kept": "requirements-001",
+      "removed": [
+        "intake-003"
+      ],
+      "reason": "Both findings emphasize the need for real-time co-editing capabilities."
+    },
+    {
+      "cluster": [
+        "intake-004",
+        "requirements-002"
+      ],
+      "kept": "requirements-002",
+      "removed": [
+        "intake-004"
+      ],
+      "reason": "Both findings address issues with the document locking mechanism."
+    },
+    {
+      "cluster": [
+        "intake-005",
+        "risk-002"
+      ],
+      "kept": "intake-005",
+      "removed": [
+        "risk-002"
+      ],
+      "reason": "Both findings discuss compliance risks and the need for adherence to regulations."
+    },
+    {
+      "cluster": [
+        "customer-001",
+        "competitive-003"
+      ],
+      "kept": "customer-001",
+      "removed": [
+        "competitive-003"
+      ],
+      "reason": "Both findings express concerns about customer churn due to feature gaps."
+    },
+    {
+      "cluster": [
+        "customer-002",
+        "requirements-002"
+      ],
+      "kept": "customer-002",
+      "removed": [
+        "requirements-002"
+      ],
+      "reason": "Both findings highlight frustrations with the document locking model."
+    },
+    {
+      "cluster": [
+        "customer-005",
+        "competitive-003"
+      ],
+      "kept": "customer-005",
+      "removed": [
+        "competitive-003"
+      ],
+      "reason": "Both findings indicate a significant risk of customer churn due to competitor pressure."
+    },
+    {
+      "cluster": [
+        "feasibility-001",
+        "requirements-003"
+      ],
+      "kept": "feasibility-001",
+      "removed": [
+        "requirements-003"
+      ],
+      "reason": "Both findings relate to the need for real-time presence indicators."
+    },
+    {
+      "cluster": [
+        "feasibility-002",
+        "requirements-004"
+      ],
+      "kept": "feasibility-002",
+      "removed": [
+        "requirements-004"
+      ],
+      "reason": "Both findings discuss the importance of a conflict resolution strategy."
+    },
+    {
+      "cluster": [
+        "metrics-001",
+        "requirements-007"
+      ],
+      "kept": "metrics-001",
+      "removed": [
+        "requirements-007"
+      ],
+      "reason": "Both findings focus on tracking Daily Active Users engaged in collaboration."
+    },
+    {
+      "cluster": [
+        "metrics-002",
+        "requirements-008"
+      ],
+      "kept": "metrics-002",
+      "removed": [
+        "requirements-008"
+      ],
+      "reason": "Both findings emphasize the importance of tracking daily collaboration sessions."
+    },
+    {
+      "cluster": [
+        "metrics-003",
+        "requirements-009"
+      ],
+      "kept": "metrics-003",
+      "removed": [
+        "requirements-009"
+      ],
+      "reason": "Both findings address the need to monitor blocked concurrent edit attempts."
+    }
+  ],
+  "ranked_findings": [
+    {
+      "finding_id": "metrics-001",
+      "title": "North Star Metric: Daily Active Users Engaged in Collaboration",
+      "user_impact": 9,
+      "business_value": 10,
+      "effort": 3,
+      "risk": 5,
+      "priority_score": 4.556
+    },
+    {
+      "finding_id": "requirements-010",
+      "title": "Conduct A/B Testing on Collaboration Features",
+      "user_impact": 5,
+      "business_value": 5,
+      "effort": 3,
+      "risk": 2,
+      "priority_score": 3.611
+    },
+    {
+      "finding_id": "competitive-002",
+      "title": "Competitive Positioning of Competitors",
+      "user_impact": 6,
+      "business_value": 7,
+      "effort": 3,
+      "risk": 4,
+      "priority_score": 3.5
+    },
+    {
+      "finding_id": "metrics-004",
+      "title": "Measurement Gap: User Feedback on Collaboration Experience",
+      "user_impact": 7,
+      "business_value": 6,
+      "effort": 3,
+      "risk": 5,
+      "priority_score": 3.148
+    },
+    {
+      "finding_id": "metrics-002",
+      "title": "Primary KPI: Daily Collaboration Sessions",
+      "user_impact": 7,
+      "business_value": 8,
+      "effort": 4,
+      "risk": 5,
+      "priority_score": 3.129
+    },
+    {
+      "finding_id": "requirements-006",
+      "title": "Collect User Feedback on Collaboration Features",
+      "user_impact": 7,
+      "business_value": 8,
+      "effort": 4,
+      "risk": 5,
+      "priority_score": 3.129
+    },
+    {
+      "finding_id": "metrics-003",
+      "title": "Guardrail Metric: Concurrent Edit Attempts Blocked",
+      "user_impact": 6,
+      "business_value": 7,
+      "effort": 4,
+      "risk": 4,
+      "priority_score": 3.0
+    },
+    {
+      "finding_id": "customer-004",
+      "title": "Mobile Editing Experience Needs Improvement",
+      "user_impact": 6,
+      "business_value": 7,
+      "effort": 4,
+      "risk": 4,
+      "priority_score": 3.0
+    },
+    {
+      "finding_id": "customer-003",
+      "title": "Need for Presence Indicators",
+      "user_impact": 4,
+      "business_value": 4,
+      "effort": 3,
+      "risk": 2,
+      "priority_score": 2.889
+    },
+    {
+      "finding_id": "competitive-004",
+      "title": "Explore Conflict Resolution Strategies",
+      "user_impact": 7,
+      "business_value": 8,
+      "effort": 5,
+      "risk": 5,
+      "priority_score": 2.771
+    },
+    {
+      "finding_id": "feasibility-004",
+      "title": "Document Locking Mechanism Update",
+      "user_impact": 7,
+      "business_value": 8,
+      "effort": 5,
+      "risk": 5,
+      "priority_score": 2.771
+    },
+    {
+      "finding_id": "customer-002",
+      "title": "Frustration with Document Locking Model",
+      "user_impact": 6,
+      "business_value": 7,
+      "effort": 4,
+      "risk": 5,
+      "priority_score": 2.71
+    },
+    {
+      "finding_id": "feasibility-003",
+      "title": "Mobile Editing Support Requirement",
+      "user_impact": 6,
+      "business_value": 7,
+      "effort": 5,
+      "risk": 4,
+      "priority_score": 2.625
+    },
+    {
+      "finding_id": "metrics-005",
+      "title": "Experiment Opportunity: A/B Testing Collaboration Features",
+      "user_impact": 5,
+      "business_value": 5,
+      "effort": 4,
+      "risk": 3,
+      "priority_score": 2.6
+    },
+    {
+      "finding_id": "requirements-005",
+      "title": "Enhance Mobile Editing Experience",
+      "user_impact": 5,
+      "business_value": 5,
+      "effort": 4,
+      "risk": 3,
+      "priority_score": 2.6
+    },
+    {
+      "finding_id": "feasibility-001",
+      "title": "Real-time Presence Indicators Dependency",
+      "user_impact": 7,
+      "business_value": 8,
+      "effort": 5,
+      "risk": 6,
+      "priority_score": 2.553
+    },
+    {
+      "finding_id": "intake-001",
+      "title": "Risk hotspot detected: auth",
+      "user_impact": 8,
+      "business_value": 8,
+      "effort": 5,
+      "risk": 7,
+      "priority_score": 2.537
+    },
+    {
+      "finding_id": "customer-005",
+      "title": "Risk of Churn Due to Competitor Pressure",
+      "user_impact": 9,
+      "business_value": 10,
+      "effort": 6,
+      "risk": 9,
+      "priority_score": 2.412
+    },
+    {
+      "finding_id": "feasibility-002",
+      "title": "Conflict Resolution Strategy Risk",
+      "user_impact": 9,
+      "business_value": 10,
+      "effort": 6,
+      "risk": 9,
+      "priority_score": 2.412
+    },
+    {
+      "finding_id": "intake-005",
+      "title": "Risk hotspot detected: compliance",
+      "user_impact": 7,
+      "business_value": 7,
+      "effort": 5,
+      "risk": 6,
+      "priority_score": 2.395
+    },
+    {
+      "finding_id": "customer-001",
+      "title": "Critical Need for Real-Time Co-Editing",
+      "user_impact": 9,
+      "business_value": 10,
+      "effort": 7,
+      "risk": 8,
+      "priority_score": 2.365
+    },
+    {
+      "finding_id": "intake-002",
+      "title": "Risk hotspot detected: pricing",
+      "user_impact": 8,
+      "business_value": 9,
+      "effort": 6,
+      "risk": 8,
+      "priority_score": 2.292
+    },
+    {
+      "finding_id": "requirements-001",
+      "title": "Implement Real-Time Co-Editing Feature",
+      "user_impact": 10,
+      "business_value": 10,
+      "effort": 8,
+      "risk": 10,
+      "priority_score": 2.097
+    },
+    {
+      "finding_id": "competitive-001",
+      "title": "Real-Time Co-Editing Feature Gap",
+      "user_impact": 9,
+      "business_value": 10,
+      "effort": 8,
+      "risk": 9,
+      "priority_score": 2.085
+    },
+    {
+      "finding_id": "risk-003",
+      "title": "Accessibility Risk Detected",
+      "user_impact": 2,
+      "business_value": 2,
+      "effort": 3,
+      "risk": 2,
+      "priority_score": 1.444
+    }
+  ],
+  "conflicts": [
+    {
+      "finding_a": "requirements-001",
+      "finding_b": "risk-002",
+      "description": "Implementing the real-time co-editing feature may exacerbate existing pricing risks flagged in multiple sources.",
+      "resolution": "Conduct a thorough pricing review and risk assessment before feature implementation to ensure compliance and mitigate potential pricing risks.",
+      "reasoning": "While the real-time co-editing feature is critical for customer retention, it must not compromise pricing integrity or lead to unforeseen financial implications."
+    },
+    {
+      "finding_a": "requirements-001",
+      "finding_b": "feasibility-002",
+      "description": "The choice of conflict resolution strategy (OT vs CRDT) must be made early, which may delay the implementation of the real-time co-editing feature.",
+      "resolution": "Prioritize a decision on the conflict resolution strategy as part of the initial project phase to avoid delays in the co-editing feature rollout.",
+      "reasoning": "Timely decision-making on the conflict resolution strategy is essential to ensure that the development of the real-time co-editing feature proceeds without unnecessary delays."
+    },
+    {
+      "finding_a": "metrics-003",
+      "finding_b": "customer-002",
+      "description": "The guardrail metric for blocked concurrent edit attempts may conflict with user feedback indicating frustration with the current document locking model.",
+      "resolution": "Revise the guardrail metric to focus on user experience improvements while monitoring blocked attempts, ensuring that user feedback is prioritized in the development process.",
+      "reasoning": "User satisfaction is paramount; thus, the metrics should align with enhancing the collaboration experience rather than strictly monitoring technical limitations."
+    },
+    {
+      "finding_a": "feasibility-003",
+      "finding_b": "customer-004",
+      "description": "Improving the mobile editing experience is critical, but it may conflict with the requirement for real-time editing support due to resource constraints.",
+      "resolution": "Adopt a phased approach to mobile editing improvements, ensuring that essential real-time collaboration features are prioritized while gradually enhancing the mobile experience.",
+      "reasoning": "Balancing immediate user needs with long-term improvements will help retain users while addressing critical functionality."
+    }
+  ],
+  "consolidated_finding_ids": [
+    "intake-001",
+    "intake-002",
+    "intake-005",
+    "metrics-001",
+    "metrics-002",
+    "metrics-003",
+    "metrics-004",
+    "metrics-005",
+    "competitive-001",
+    "competitive-002",
+    "competitive-004",
+    "customer-001",
+    "customer-002",
+    "customer-003",
+    "customer-004",
+    "customer-005",
+    "feasibility-001",
+    "feasibility-002",
+    "feasibility-003",
+    "feasibility-004",
+    "requirements-001",
+    "requirements-005",
+    "requirements-006",
+    "requirements-010",
+    "risk-003"
+  ]
+}

@@ -1,0 +1,449 @@
+{
+  "evidence_index": {
+    "SEARCH-201": [
+      "intake-001",
+      "intake-003",
+      "customer-001",
+      "feasibility-001",
+      "requirements-001",
+      "requirements-008"
+    ],
+    "SEARCH-202": [
+      "intake-001"
+    ],
+    "DOC-002": [
+      "intake-002",
+      "intake-003",
+      "intake-004",
+      "customer-001",
+      "customer-004",
+      "requirements-011",
+      "risk-001",
+      "risk-002",
+      "risk-003"
+    ],
+    "DOC-003": [
+      "intake-002",
+      "metrics-001",
+      "metrics-003",
+      "requirements-007"
+    ],
+    "SEARCH-203": [
+      "intake-002",
+      "metrics-002",
+      "customer-002",
+      "feasibility-002",
+      "requirements-002"
+    ],
+    "SEARCH-206": [
+      "intake-002",
+      "metrics-005",
+      "feasibility-005",
+      "requirements-005"
+    ],
+    "DOC-001": [
+      "intake-003",
+      "customer-002",
+      "customer-003"
+    ],
+    "SEARCH-204": [
+      "metrics-004",
+      "customer-004",
+      "feasibility-003",
+      "requirements-004",
+      "requirements-009"
+    ],
+    "SEARCH-205": [
+      "customer-001",
+      "feasibility-004",
+      "requirements-006"
+    ],
+    "SEARCH-9190": [
+      "customer-002"
+    ],
+    "SEARCH-207": [
+      "customer-003",
+      "feasibility-006",
+      "requirements-003",
+      "requirements-010"
+    ],
+    "SEARCH-9211": [
+      "customer-003"
+    ]
+  },
+  "dedup_log": [
+    {
+      "cluster": [
+        "intake-001",
+        "feasibility-001"
+      ],
+      "kept": "feasibility-001",
+      "removed": [
+        "intake-001"
+      ],
+      "reason": "Both findings describe the significant drop in search relevance scores after the v2.4.1 deployment, indicating user dissatisfaction."
+    },
+    {
+      "cluster": [
+        "intake-002",
+        "risk-001"
+      ],
+      "kept": "intake-002",
+      "removed": [
+        "risk-001"
+      ],
+      "reason": "Both findings highlight risks related to authentication, with one focusing on detected keywords and the other on potential weaknesses in the authentication flow."
+    },
+    {
+      "cluster": [
+        "intake-003",
+        "requirements-005"
+      ],
+      "kept": "intake-003",
+      "removed": [
+        "requirements-005"
+      ],
+      "reason": "Both findings emphasize the need to establish baseline metrics for pricing, indicating a risk in understanding pricing effectiveness."
+    },
+    {
+      "cluster": [
+        "customer-001",
+        "requirements-006"
+      ],
+      "kept": "customer-001",
+      "removed": [
+        "requirements-006"
+      ],
+      "reason": "Both findings address the drop in search relevance scores for anonymous users, with one suggesting a root-cause analysis and the other proposing A/B testing."
+    },
+    {
+      "cluster": [
+        "customer-004",
+        "requirements-004"
+      ],
+      "kept": "customer-004",
+      "removed": [
+        "requirements-004"
+      ],
+      "reason": "Both findings discuss the lack of instrumentation for new search features, emphasizing the need for analytics to track performance."
+    },
+    {
+      "cluster": [
+        "customer-002",
+        "feasibility-002"
+      ],
+      "kept": "customer-002",
+      "removed": [
+        "feasibility-002"
+      ],
+      "reason": "Both findings report on increased mobile search latency, indicating a significant impact on user experience."
+    },
+    {
+      "cluster": [
+        "customer-003",
+        "feasibility-006"
+      ],
+      "kept": "customer-003",
+      "removed": [
+        "feasibility-006"
+      ],
+      "reason": "Both findings address the issue of stale autocomplete suggestions, linking it to user frustration and relevance problems."
+    },
+    {
+      "cluster": [
+        "intake-004",
+        "risk-003"
+      ],
+      "kept": "intake-004",
+      "removed": [
+        "risk-003"
+      ],
+      "reason": "Both findings highlight accessibility risks, indicating potential non-compliance with standards that could affect users with disabilities."
+    },
+    {
+      "cluster": [
+        "metrics-004",
+        "feasibility-003"
+      ],
+      "kept": "metrics-004",
+      "removed": [
+        "feasibility-003"
+      ],
+      "reason": "Both findings discuss gaps in data collection for new query types, emphasizing the need for improved instrumentation."
+    }
+  ],
+  "ranked_findings": [
+    {
+      "finding_id": "requirements-011",
+      "title": "Review and Update Search Documentation",
+      "user_impact": 3,
+      "business_value": 3,
+      "effort": 2,
+      "risk": 2,
+      "priority_score": 2.786
+    },
+    {
+      "finding_id": "metrics-003",
+      "title": "Guardrail Metric: Zero Result Rate",
+      "user_impact": 6,
+      "business_value": 7,
+      "effort": 4,
+      "risk": 5,
+      "priority_score": 2.71
+    },
+    {
+      "finding_id": "metrics-005",
+      "title": "Establish Baseline Metrics for Image Search",
+      "user_impact": 6,
+      "business_value": 7,
+      "effort": 4,
+      "risk": 5,
+      "priority_score": 2.71
+    },
+    {
+      "finding_id": "customer-004",
+      "title": "Lack of Instrumentation for New Search Features",
+      "user_impact": 6,
+      "business_value": 7,
+      "effort": 4,
+      "risk": 5,
+      "priority_score": 2.71
+    },
+    {
+      "finding_id": "requirements-007",
+      "title": "Monitor Search Relevance Metrics",
+      "user_impact": 6,
+      "business_value": 7,
+      "effort": 4,
+      "risk": 5,
+      "priority_score": 2.71
+    },
+    {
+      "finding_id": "requirements-003",
+      "title": "Fix Autocomplete Cache Configuration",
+      "user_impact": 5,
+      "business_value": 5,
+      "effort": 3,
+      "risk": 4,
+      "priority_score": 2.708
+    },
+    {
+      "finding_id": "intake-003",
+      "title": "Risk hotspot detected: pricing",
+      "user_impact": 7,
+      "business_value": 7,
+      "effort": 4,
+      "risk": 6,
+      "priority_score": 2.676
+    },
+    {
+      "finding_id": "metrics-002",
+      "title": "Primary KPI: Search Latency (P95)",
+      "user_impact": 7,
+      "business_value": 8,
+      "effort": 5,
+      "risk": 6,
+      "priority_score": 2.553
+    },
+    {
+      "finding_id": "metrics-004",
+      "title": "Instrumentation Gap for New Query Types",
+      "user_impact": 7,
+      "business_value": 8,
+      "effort": 5,
+      "risk": 6,
+      "priority_score": 2.553
+    },
+    {
+      "finding_id": "requirements-002",
+      "title": "Optimize Mobile Search Latency",
+      "user_impact": 7,
+      "business_value": 8,
+      "effort": 5,
+      "risk": 6,
+      "priority_score": 2.553
+    },
+    {
+      "finding_id": "intake-002",
+      "title": "Risk hotspot detected: auth",
+      "user_impact": 8,
+      "business_value": 8,
+      "effort": 5,
+      "risk": 7,
+      "priority_score": 2.537
+    },
+    {
+      "finding_id": "customer-003",
+      "title": "Stale Autocomplete Suggestions",
+      "user_impact": 4,
+      "business_value": 4,
+      "effort": 3,
+      "risk": 3,
+      "priority_score": 2.476
+    },
+    {
+      "finding_id": "feasibility-005",
+      "title": "Baseline Metrics for Image Search",
+      "user_impact": 4,
+      "business_value": 4,
+      "effort": 3,
+      "risk": 3,
+      "priority_score": 2.476
+    },
+    {
+      "finding_id": "requirements-008",
+      "title": "Collect User Feedback on Search Experience",
+      "user_impact": 4,
+      "business_value": 4,
+      "effort": 3,
+      "risk": 3,
+      "priority_score": 2.476
+    },
+    {
+      "finding_id": "metrics-001",
+      "title": "North Star Metric: Search Relevance Score",
+      "user_impact": 9,
+      "business_value": 9,
+      "effort": 6,
+      "risk": 8,
+      "priority_score": 2.437
+    },
+    {
+      "finding_id": "customer-002",
+      "title": "Increased Mobile Search Latency",
+      "user_impact": 7,
+      "business_value": 7,
+      "effort": 5,
+      "risk": 6,
+      "priority_score": 2.395
+    },
+    {
+      "finding_id": "feasibility-004",
+      "title": "Inconclusive A/B Test Results",
+      "user_impact": 5,
+      "business_value": 5,
+      "effort": 4,
+      "risk": 4,
+      "priority_score": 2.321
+    },
+    {
+      "finding_id": "requirements-009",
+      "title": "Enhance Search Analytics Dashboard",
+      "user_impact": 5,
+      "business_value": 5,
+      "effort": 4,
+      "risk": 4,
+      "priority_score": 2.321
+    },
+    {
+      "finding_id": "customer-001",
+      "title": "Significant Relevance Drop for Anonymous Users",
+      "user_impact": 9,
+      "business_value": 9,
+      "effort": 7,
+      "risk": 8,
+      "priority_score": 2.25
+    },
+    {
+      "finding_id": "requirements-001",
+      "title": "Investigate Search Relevance Drop",
+      "user_impact": 9,
+      "business_value": 9,
+      "effort": 7,
+      "risk": 8,
+      "priority_score": 2.25
+    },
+    {
+      "finding_id": "requirements-010",
+      "title": "Implement Error Handling for Search Queries",
+      "user_impact": 3,
+      "business_value": 3,
+      "effort": 3,
+      "risk": 2,
+      "priority_score": 2.167
+    },
+    {
+      "finding_id": "risk-002",
+      "title": "Potential PII Handling Issues",
+      "user_impact": 9,
+      "business_value": 9,
+      "effort": 7,
+      "risk": 9,
+      "priority_score": 2.127
+    },
+    {
+      "finding_id": "feasibility-001",
+      "title": "Search Relevance Score Drop",
+      "user_impact": 9,
+      "business_value": 9,
+      "effort": 8,
+      "risk": 9,
+      "priority_score": 1.983
+    },
+    {
+      "finding_id": "intake-004",
+      "title": "Risk hotspot detected: accessibility",
+      "user_impact": 2,
+      "business_value": 3,
+      "effort": 3,
+      "risk": 4,
+      "priority_score": 1.333
+    }
+  ],
+  "conflicts": [
+    {
+      "finding_a": "customer-001",
+      "finding_b": "feasibility-001",
+      "description": "The new ranking algorithm has caused a drop in search relevance scores, affecting anonymous users, which contradicts the goal of improving search relevance.",
+      "resolution": "Conduct a thorough analysis of the ranking algorithm's impact on anonymous users and adjust the algorithm to mitigate negative effects.",
+      "reasoning": "Addressing the relevance drop for anonymous users is critical to maintaining user satisfaction and engagement, necessitating immediate corrective actions."
+    },
+    {
+      "finding_a": "customer-002",
+      "finding_b": "requirements-002",
+      "description": "Increased mobile search latency contradicts the requirement to optimize mobile search latency to improve user experience.",
+      "resolution": "Prioritize the optimization of mobile search latency by profiling and implementing caching strategies to reduce latency below the target threshold.",
+      "reasoning": "Improving mobile search latency is essential for user satisfaction, especially given the recent increase in latency that has frustrated users."
+    },
+    {
+      "finding_a": "metrics-004",
+      "finding_b": "requirements-009",
+      "description": "The lack of instrumentation for new query types limits the ability to measure their performance, which contradicts the need to enhance the analytics dashboard for these features.",
+      "resolution": "Implement analytics instrumentation for new query types before enhancing the analytics dashboard to ensure accurate performance measurement.",
+      "reasoning": "Establishing proper data collection is necessary to inform any dashboard enhancements and ensure that metrics reflect actual user interactions."
+    },
+    {
+      "finding_a": "risk-002",
+      "finding_b": "requirements-008",
+      "description": "Potential PII handling issues due to the recent deployment contradict the recommendation to collect user feedback, which may involve sensitive data.",
+      "resolution": "Ensure that any user feedback collection mechanisms are compliant with data minimization principles and include explicit consent for PII handling.",
+      "reasoning": "Addressing privacy concerns is paramount, and feedback mechanisms must be designed to respect user privacy while still gathering valuable insights."
+    }
+  ],
+  "consolidated_finding_ids": [
+    "intake-002",
+    "intake-003",
+    "intake-004",
+    "metrics-001",
+    "metrics-002",
+    "metrics-003",
+    "metrics-004",
+    "metrics-005",
+    "customer-001",
+    "customer-002",
+    "customer-003",
+    "customer-004",
+    "feasibility-001",
+    "feasibility-004",
+    "feasibility-005",
+    "requirements-001",
+    "requirements-002",
+    "requirements-003",
+    "requirements-007",
+    "requirements-008",
+    "requirements-009",
+    "requirements-010",
+    "requirements-011",
+    "risk-002"
+  ]
+}

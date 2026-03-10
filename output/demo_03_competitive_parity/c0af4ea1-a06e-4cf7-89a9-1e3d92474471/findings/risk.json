@@ -1,0 +1,107 @@
+{
+  "agent_id": "risk",
+  "agent_name": "Risk/Privacy/Compliance Guardrails Agent",
+  "run_id": "c0af4ea1-a06e-4cf7-89a9-1e3d92474471",
+  "timestamp": "2026-03-09T21:28:43.758436Z",
+  "findings": [
+    {
+      "id": "risk-001",
+      "agent_id": "risk",
+      "type": "risk",
+      "title": "Authentication Weakness Detected",
+      "description": "High-risk keywords related to authentication have been identified, indicating potential weaknesses in the authentication flow that could lead to unauthorized access.",
+      "impact": "high",
+      "confidence": "directional",
+      "assumptions": [
+        "Existing authentication mechanisms may not meet security standards."
+      ],
+      "evidence": [
+        {
+          "source_id": "DOC-001",
+          "source_type": "doc",
+          "excerpt": "Detected auth risk keywords in multiple sources.",
+          "url": null
+        }
+      ],
+      "recommendations": [
+        "Conduct a thorough review of the authentication flow and implement necessary security enhancements."
+      ],
+      "tags": [
+        "security",
+        "auth"
+      ],
+      "metadata": {
+        "category": "security",
+        "is_blocker": true,
+        "mitigation": "Review and strengthen authentication mechanisms.",
+        "policy_rule": "Block on critical security"
+      }
+    },
+    {
+      "id": "risk-002",
+      "agent_id": "risk",
+      "type": "risk",
+      "title": "Compliance Risk Identified",
+      "description": "High-risk keywords related to compliance have been detected, indicating potential violations of GDPR and CCPA regarding data handling and user consent.",
+      "impact": "high",
+      "confidence": "directional",
+      "assumptions": [
+        "Data handling practices may not align with regulatory requirements."
+      ],
+      "evidence": [
+        {
+          "source_id": "DOC-001",
+          "source_type": "doc",
+          "excerpt": "Detected compliance risk keywords in multiple sources.",
+          "url": null
+        }
+      ],
+      "recommendations": [
+        "Conduct a legal review of data handling practices to ensure compliance with GDPR and CCPA."
+      ],
+      "tags": [
+        "compliance"
+      ],
+      "metadata": {
+        "category": "compliance",
+        "is_blocker": true,
+        "mitigation": "Legal review of data handling practices.",
+        "policy_rule": "Legal review for PII"
+      }
+    },
+    {
+      "id": "risk-003",
+      "agent_id": "risk",
+      "type": "risk",
+      "title": "Accessibility Risk Detected",
+      "description": "Low-risk keywords related to accessibility have been identified, indicating potential gaps in meeting WCAG AA standards.",
+      "impact": "low",
+      "confidence": "directional",
+      "assumptions": [
+        "Accessibility features may not be fully implemented."
+      ],
+      "evidence": [
+        {
+          "source_id": "DOC-001",
+          "source_type": "doc",
+          "excerpt": "Detected accessibility risk keywords.",
+          "url": null
+        }
+      ],
+      "recommendations": [
+        "Review and enhance accessibility features to ensure compliance with WCAG AA standards."
+      ],
+      "tags": [
+        "accessibility"
+      ],
+      "metadata": {
+        "category": "accessibility",
+        "is_blocker": false,
+        "mitigation": "Enhance accessibility features.",
+        "policy_rule": "Accessibility is a requirement"
+      }
+    }
+  ],
+  "summary": "Identified 3 risks (1 accessibility, 1 compliance, 1 security). 2 flagged as blockers. Risk gate: FAILED (2 blockers, 0 warnings).",
+  "errors": []
+}

@@ -1,0 +1,10 @@
+{
+  "passed": false,
+  "blockers": [
+    "BLOCKED: Risk agent flagged as blocker \u2014 Privacy Risk Due to Lack of Granular Consent Mechanisms [risk-001]",
+    "BLOCKED: Risk agent flagged as blocker \u2014 GDPR Compliance Audit Blocker [risk-002]",
+    "BLOCKED: Risk agent flagged as blocker \u2014 Authentication Weaknesses Detected [risk-004]",
+    "BLOCKED: Risk agent flagged as blocker \u2014 Compliance Risks Related to Data Sharing [risk-005]"
+  ],
+  "warnings": []
+}

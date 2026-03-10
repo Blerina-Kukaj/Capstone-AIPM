@@ -1,0 +1,11 @@
+{
+  "agent_id": "competitive",
+  "agent_name": "Competitive & Positioning Agent",
+  "run_id": "b9496692-5031-4e1c-80d0-41bd049fec4f",
+  "timestamp": "2026-03-09T21:23:33.124458Z",
+  "findings": [],
+  "summary": "No competitive data available for analysis.",
+  "errors": [
+    "No competitor briefs or competitive mentions found in context packet"
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "agent_id": "risk",
+  "agent_name": "Risk/Privacy/Compliance Guardrails Agent",
+  "run_id": "b9496692-5031-4e1c-80d0-41bd049fec4f",
+  "timestamp": "2026-03-09T21:25:00.877023Z",
+  "findings": [
+    {
+      "id": "risk-001",
+      "agent_id": "risk",
+      "type": "risk",
+      "title": "Authentication Risk Detected",
+      "description": "High-risk keywords related to authentication have been detected in multiple sources, indicating potential weaknesses in the authentication flow that could lead to unauthorized access.",
+      "impact": "high",
+      "confidence": "directional",
+      "assumptions": [
+        "Authentication mechanisms are critical for user data protection."
+      ],
+      "evidence": [
+        {
+          "source_id": "DOC-002",
+          "source_type": "doc",
+          "excerpt": "Detected auth risk keywords in 4 source(s)",
+          "url": null
+        }
+      ],
+      "recommendations": [
+        "Conduct a security review of the authentication flow to identify and remediate vulnerabilities."
+      ],
+      "tags": [
+        "security",
+        "auth"
+      ],
+      "metadata": {
+        "category": "security",
+        "is_blocker": true,
+        "mitigation": "Review and strengthen authentication mechanisms.",
+        "policy_rule": "Block on critical security"
+      }
+    },
+    {
+      "id": "risk-002",
+      "agent_id": "risk",
+      "type": "risk",
+      "title": "Potential PII Handling Issues",
+      "description": "The recent deployment may have inadvertently increased the handling of personally identifiable information (PII) without adequate consent mechanisms, violating data minimization principles.",
+      "impact": "critical",
+      "confidence": "directional",
+      "assumptions": [
+        "User consent is required for any PII collection."
+      ],
+      "evidence": [
+        {
+          "source_id": "DOC-002",
+          "source_type": "doc",
+          "excerpt": "Require consent mechanism: True",
+          "url": null
+        }
+      ],
+      "recommendations": [
+        "Implement a review of data collection practices and ensure all PII handling complies with consent requirements."
+      ],
+      "tags": [
+        "privacy",
+        "PII"
+      ],
+      "metadata": {
+        "category": "privacy",
+        "is_blocker": true,
+        "mitigation": "Review and ensure compliance with consent mechanisms for PII.",
+        "policy_rule": "Block on critical privacy"
+      }
+    },
+    {
+      "id": "risk-003",
+      "agent_id": "risk",
+      "type": "risk",
+      "title": "Accessibility Compliance Gaps",
+      "description": "Accessibility risk keywords detected indicate potential non-compliance with WCAG standards, which could hinder users with disabilities from effectively using the product.",
+      "impact": "low",
+      "confidence": "directional",
+      "assumptions": [
+        "Accessibility is a requirement and must be prioritized."
+      ],
+      "evidence": [
+        {
+          "source_id": "DOC-002",
+          "source_type": "doc",
+          "excerpt": "Detected accessibility risk keywords in 1 source(s)",
+          "url": null
+        }
+      ],
+      "recommendations": [
+        "Conduct an accessibility audit to identify and remediate compliance gaps."
+      ],
+      "tags": [
+        "accessibility"
+      ],
+      "metadata": {
+        "category": "accessibility",
+        "is_blocker": false,
+        "mitigation": "Perform an accessibility audit and implement necessary changes.",
+        "policy_rule": "Accessibility is a requirement"
+      }
+    }
+  ],
+  "summary": "Identified 3 risks (1 accessibility, 1 privacy, 1 security). 2 flagged as blockers. Risk gate: FAILED (2 blockers, 1 warnings).",
+  "errors": []
+}

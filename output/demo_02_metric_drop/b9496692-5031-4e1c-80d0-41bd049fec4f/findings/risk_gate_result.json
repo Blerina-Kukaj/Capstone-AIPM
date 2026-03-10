@@ -1,0 +1,10 @@
+{
+  "passed": false,
+  "blockers": [
+    "BLOCKED: Risk agent flagged as blocker \u2014 Authentication Risk Detected [risk-001]",
+    "BLOCKED: Risk agent flagged as blocker \u2014 Potential PII Handling Issues [risk-002]"
+  ],
+  "warnings": [
+    "Legal review required for PII/privacy \u2014 Potential PII Handling Issues [risk-002]"
+  ]
+}
